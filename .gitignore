@@ -1,0 +1,13 @@
+# Soluciones - no deben estar en el repo de alumnos
+*_SOLUCION*
+**/*_SOLUCION*
+
+# Build y IDE
+target/
+.metadata/
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
