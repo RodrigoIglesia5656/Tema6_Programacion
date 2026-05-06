@@ -1,6 +1,6 @@
 package Ejercicio_3;
 
-public class Vehiculo {
+public abstract class Vehiculo {
 	private String color;
 	private String modelo;
 	private double precio;
@@ -43,5 +43,10 @@ public class Vehiculo {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	@Override
+	public String toString() {
+		return "Marca: " + marca + ", Modelo: " + modelo + ", Color: " + color + ", Precio: " + precio + "€";
 	}
 }
