@@ -1,32 +1,31 @@
 package Ejercicio_1;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Factura {
-	private LocalDate fecha;
+
+	private static int codFactura = 0;
+
+	private LocalDateTime fecha;
 	private int numeroFactura;
 	private boolean pagada;
+	private List<LineaFactura> lineas;
 
-	public Factura(LocalDate fecha, int numeroFactura, boolean pagada) {
-		this.fecha = fecha;
-		this.numeroFactura = numeroFactura;
-		this.pagada = pagada;
+	public Factura() {
+		numeroFactura = ++codFactura;
+		fecha = LocalDateTime.now();
+		pagada = false;
+		lineas = new ArrayList<>();
 	}
 
-	public LocalDate getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
-	}
-
-	public int getNumeroFactura() {
-		return numeroFactura;
-	}
-
-	public void setNumeroFactura(int numeroFactura) {
-		this.numeroFactura = numeroFactura;
 	}
 
 	public boolean isPagada() {
@@ -35,6 +34,18 @@ public class Factura {
 
 	public void setPagada(boolean pagada) {
 		this.pagada = pagada;
+	}
+
+	public int getNumeroFactura() {
+		return numeroFactura;
+	}
+
+	public List<LineaFactura> getLineas() {
+		return lineas;
+	}
+	
+	public boolean addLinea(LineaFactura lf) {
+		return lineas.add(lf);
 	}
 
 }

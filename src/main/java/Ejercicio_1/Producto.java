@@ -1,26 +1,27 @@
 package Ejercicio_1;
 
+import java.util.Objects;
+
 public class Producto {
+	
+	private static int contadorCodigo = 1;
+
 	private int codigo;
 	private String descripcion;
-	private float precio;
-	private int cantidad;
+	private double precio;
+	private int cantidadDisponible;
 	private int minimo;
 
-	public Producto(int codigo, String descripcion, float precio, int cantidad, int minimo) {
-		this.cantidad = cantidad;
-		this.codigo = codigo;
+	public Producto(String descripcion) {
+		codigo = contadorCodigo++;
 		this.descripcion = descripcion;
-		this.minimo = minimo;
+	}
+
+	public Producto(String descripcion, double precio, int cantidadDisponible, int minimo) {
+		this(descripcion);
 		this.precio = precio;
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+		this.cantidadDisponible = cantidadDisponible;
+		this.minimo = minimo;
 	}
 
 	public String getDescripcion() {
@@ -31,20 +32,20 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+	public int getCantidadDisponible() {
+		return cantidadDisponible;
 	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setCantidadDisponible(int cantidad) {
+		this.cantidadDisponible = cantidad;
 	}
 
 	public int getMinimo() {
@@ -55,10 +56,32 @@ public class Producto {
 		this.minimo = minimo;
 	}
 
+	public int getCodigo() {
+		return codigo;
+	}
+
 	@Override
 	public String toString() {
-		return "Producto: " + "\nCodigo: " + codigo + "\nDescripcion: " + descripcion + "\nPrecio: " + precio
-				+ "\nCantidad: " + cantidad + "\nMinimo: " + minimo;
+		return "Producto [codigo=" + codigo + ", descripcion=" + descripcion + ", precio=" + precio + ", cantidad="
+				+ cantidadDisponible + ", minimo=" + minimo + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cantidadDisponible, codigo, descripcion, minimo, precio);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Producto other = (Producto) obj;
+		return cantidadDisponible == other.cantidadDisponible && codigo == other.codigo && Objects.equals(descripcion, other.descripcion)
+				&& minimo == other.minimo && Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio);
 	}
 
 }

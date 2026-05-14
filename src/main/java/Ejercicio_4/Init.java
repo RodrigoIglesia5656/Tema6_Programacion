@@ -30,8 +30,6 @@ public class Init {
 			double precio = elec.precioFinal();
 			System.out.println(elec.getClass().getSimpleName() + " - Precio: " + precio + "€");
 
-			
-
 			if (elec instanceof Lavadora) {
 				totalLavadoras += precio;
 			} else if (elec instanceof Television) {

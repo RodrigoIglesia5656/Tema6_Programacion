@@ -1,46 +1,63 @@
 package Ejercicio_1;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Stock {
-	private ArrayList<Producto> listaProductos;
+	
+	private List<Producto> listaProductos;
 
 	public Stock() {
-		this.listaProductos = new ArrayList<>();
-	}
-
-	public void añadirProductos(Producto nuevoProducto) {
-		listaProductos.add(nuevoProducto);
+		listaProductos = new ArrayList<>();	
 	}
 	
-	public Producto buscarProducto(int codigoBuscado) {
-		for (Producto p : listaProductos) {
-			if (p.getCodigo() == codigoBuscado) {
-				return p; // Si el bucle encuentra algo lo devuelve y termina la busqueda
+	public boolean addProducto(Producto p) {
+		return listaProductos.add(p);
+	}
+	
+	public Producto deleteProducto(int id) {
+		for (int i = 0; i < listaProductos.size(); i++) {
+			if(listaProductos.get(i).getCodigo() == id) {
+				return listaProductos.remove(i);
 			}
 		}
-		return null; // Si el bucle no encuentra nada, devuelve "nada".
+		return null;
 	}
-	// Retorna lista de productos con cantidad igual a 0
-    public ArrayList<Producto> productosAgotados() {
-        ArrayList<Producto> agotados = new ArrayList<>();
-        for (Producto p : listaProductos) {
-            if (p.getCantidad() == 0) {
-                agotados.add(p);
-            }
-        }
-        return agotados;
-    }
+	
+	public Producto findProductoById(int id) {
+		for (int i = 0; i < listaProductos.size(); i++) {
+			if(listaProductos.get(i).getCodigo() == id) {
+				return listaProductos.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public List<Producto> productosAgotados() {
+		List<Producto> prodAgotados = new ArrayList<>();
+		for(Producto p: listaProductos) {
+			if(p.getCantidadDisponible() == 0) {
+				prodAgotados.add(p);
+			}
+		}
+		return prodAgotados;
+	}
+	
+	/**Devuelve un listado de productos cuya cantidad está por debajo del mínimo
+	 * @return listado de productos
+	 */
+	public List<Producto> productosBajoMinimos() {
+		List<Producto> prodBajoMinimos = new ArrayList<>();
+		for(Producto p: listaProductos) {
+			if(p.getCantidadDisponible() < p.getMinimo()) {
+				prodBajoMinimos.add(p);
+			}
+		}
+		return prodBajoMinimos;
+	}
 
-    // Retorna lista de productos con cantidad menor al mínimo establecido
-    public ArrayList<Producto> productosBajoMinimos() {
-        ArrayList<Producto> bajoMinimos = new ArrayList<>();
-        for (Producto p : listaProductos) {
-            if (p.getCantidad() < p.getMinimo()) {
-                bajoMinimos.add(p);
-            }
-        }
-        return bajoMinimos;
-    }
-} // Fin de la clase Stock
-
+	public List<Producto> getListaProductos() {
+		return listaProductos;
+	}
+	
+}

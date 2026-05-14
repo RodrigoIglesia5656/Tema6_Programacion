@@ -1,41 +1,43 @@
 package Ejercicio_1;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class CajonFacturas {
-    // Atributo: lista de objetos Factura
-    private ArrayList<Factura> facturas;
 
-    // 1. Constructor vacío
-    public CajonFacturas() {
-        this.facturas = new ArrayList<Factura>();
-    }
+	private List<Factura> facturas;
 
-    // 2. Método añadir
-    public void añadir(Factura f) {
-        this.facturas.add(f);
-    }
+	public CajonFacturas() {
+		facturas = new ArrayList<>();
+	}
 
-    // 3. Método buscar
-    // Se busca por el atributo numeroFactura definido en el diagrama
-    public Factura buscar(int numeroFactura) {
-        for (Factura f : facturas) {
-            if (f.getNumeroFactura() == numeroFactura) {
-                return f;
-            }
-        }
-        return null; // Retorna null si no se encuentra
-    }
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
 
-    // 4. Método que retorna facturas que no se han cobrado
-    // Utiliza el atributo 'pagada' de la clase Factura
-    public ArrayList<Factura> facturasPendientesCobro() {
-        ArrayList<Factura> pendientes = new ArrayList<>();
-        for (Factura f : facturas) {
-            // Si 'pagada' es false, se añade a la lista 
-            if (!f.isPagada()) {
-                pendientes.add(f);
-            }
-        }
-        return pendientes;
-    }
+	public boolean addLinea(Factura f) {
+		return facturas.add(f);
+	}
+
+	public Factura find(int codFactura) {
+		for (Factura f : facturas) {
+			if (f.getNumeroFactura() == codFactura) {
+				return f;
+			}
+		}
+		return null;
+	}
+
+	public List<Factura> facturasPendientesPago() {
+		List<Factura> pdtePago = new ArrayList<>();
+
+		for (int i = 0; i < facturas.size(); i++) {
+			if (!facturas.get(i).isPagada()) {
+				pdtePago.add(facturas.get(i));
+			}
+		}
+
+		return pdtePago;
+	}
+
 }

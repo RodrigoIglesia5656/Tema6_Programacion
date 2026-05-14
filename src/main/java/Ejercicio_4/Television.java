@@ -39,7 +39,7 @@ public class Television extends Electrodomestico {
 		double total = super.precioFinal();
 
 		if (tamano >= 40) {
-			total += (total * 0.30); // 30% de aumento
+			total += (total * 0.30);
 		}
 		if (sintonizadorTDT) {
 			total += 50;
